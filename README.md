@@ -495,9 +495,3 @@ MT
 - OpenAI - https://openai.com/ (optional narrative engine)
   '@
 
-$enc = New-Object System.Text.UTF8Encoding $false
-[System.IO.File]::WriteAllText((Join-Path (Get-Location) "README.md"), $readme, $enc)
-
-Write-Host ""
-Write-Host "README.md updated:" -ForegroundColor Green
-Get-Item README.md | Select-Object Name, Length
