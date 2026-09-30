@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ai-employee-management
+  datasource:
+    url: jdbc:mysql://localhost:3306/ems_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: false
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:change-this-super-secret-key-for-hs256-min-32-bytes-long!!}
+    expiration-ms: 86400000
+  ai:
+    provider: rule-based
+    openai:
+      api-key: ${OPENAI_API_KEY:}
+      model: gpt-4o-mini
+  attendance:
+    work-start: "09:30"
+    work-end: "18:30"
+    absent-sweep-cron: "0 0 21 * * MON-FRI"
+
+logging:
+  level:
+    com.company.ems: INFO
+    org.hibernate.SQL: WARN

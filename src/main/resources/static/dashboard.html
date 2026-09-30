@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard - AI Employee Management</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body id="dashboard">
+<header class="app-header">
+    <div class="brand"><span class="mt-logo">MT</span> AI Employee Management</div>
+    <div class="user-info">
+        <span id="userLabel"></span>
+        <button class="btn btn-outline btn-sm" id="logoutBtn">Sign out</button>
+    </div>
+</header>
+
+<nav class="tabs" id="tabs">
+    <button data-tab="employees">Employees</button>
+    <button data-tab="attendance">Attendance</button>
+    <button data-tab="leaves">Leaves</button>
+    <button data-tab="performance">Performance</button>
+    <button data-tab="ai">AI Reports</button>
+    <button data-tab="users">Users</button>
+</nav>
+
+<main>
+    <section id="tab-employees" class="tab-content" hidden>
+        <div class="toolbar">
+            <input type="search" id="empSearch" placeholder="Search by name, email, department">
+            <button class="btn btn-outline" id="empSearchBtn">Search</button>
+            <button class="btn btn-primary" id="addEmpBtn">+ Add Employee</button>
+        </div>
+        <table class="data-table">
+            <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Department</th><th>Designation</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="empList"></tbody>
+        </table>
+    </section>
+
+    <section id="tab-attendance" class="tab-content" hidden>
+        <div class="card">
+            <h2>Today</h2>
+            <p id="attStatus" class="muted">Loading...</p>
+            <div class="button-row">
+                <button class="btn btn-primary" id="checkInBtn" hidden>Check in</button>
+                <button class="btn btn-secondary" id="checkOutBtn" hidden>Check out</button>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Last 30 days</h2>
+            <table class="data-table">
+                <thead><tr><th>Date</th><th>In</th><th>Out</th><th>Status</th><th>Hours</th></tr></thead>
+                <tbody id="attHistory"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="tab-leaves" class="tab-content" hidden>
+        <div class="card">
+            <h2>Apply for leave</h2>
+            <form id="leaveForm" class="form-row">
+                <label>From <input type="date" id="leaveFrom" required></label>
+                <label>To <input type="date" id="leaveTo" required></label>
+                <label class="grow">Reason <input type="text" id="leaveReason" maxlength="500" required></label>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="card">
+            <h2>My requests</h2>
+            <table class="data-table">
+                <thead><tr><th>Dates</th><th>Days</th><th>Reason</th><th>Status</th><th>Applied</th></tr></thead>
+                <tbody id="myLeaves"></tbody>
+            </table>
+        </div>
+        <div class="card" id="pendingLeavesSection" hidden>
+            <h2>Pending approvals</h2>
+            <table class="data-table">
+                <thead><tr><th>Employee</th><th>Dates</th><th>Days</th><th>Reason</th><th>Actions</th></tr></thead>
+                <tbody id="pendingLeaves"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="tab-performance" class="tab-content" hidden>
+        <div class="toolbar">
+            <button class="btn btn-primary" id="addReviewBtn">+ Add Review</button>
+        </div>
+        <table class="data-table">
+            <thead><tr><th>Employee</th><th>Date</th><th>Rating</th><th>Goals met</th><th>Reviewer</th></tr></thead>
+            <tbody id="reviewList"></tbody>
+        </table>
+    </section>
+
+    <section id="tab-ai" class="tab-content" hidden>
+        <div class="card">
+            <div class="card-header">
+                <h2>My AI briefing</h2>
+                <button class="btn btn-outline btn-sm" id="loadMyReport">Refresh</button>
+            </div>
+            <div id="myReport" class="report-body">Loading...</div>
+        </div>
+        <div class="card" id="orgReportSection" hidden>
+            <div class="card-header">
+                <h2>Organisation briefing</h2>
+                <button class="btn btn-outline btn-sm" id="loadOrgReport">Generate</button>
+            </div>
+            <div id="orgReport" class="report-body"></div>
+        </div>
+    </section>
+
+    <section id="tab-users" class="tab-content" hidden>
+        <div class="toolbar">
+            <button class="btn btn-primary" id="addUserBtn">+ Create Login</button>
+        </div>
+        <table class="data-table">
+            <thead><tr><th>ID</th><th>Username</th><th>Role</th><th>Employee ID</th><th>Enabled</th></tr></thead>
+            <tbody id="userList"></tbody>
+        </table>
+    </section>
+</main>
+
+<div id="modal" class="modal" hidden>
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-content" id="modalContent"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

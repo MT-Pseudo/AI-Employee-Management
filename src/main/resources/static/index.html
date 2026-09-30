@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sign in - AI Employee Management</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+<main class="login-card">
+    <h1>AI Employee Management</h1>
+    <p class="subtitle">Sign in to continue</p>
+    <form id="loginForm">
+        <label>Username
+            <input type="text" id="username" autocomplete="username" required autofocus>
+        </label>
+        <label>Password
+            <input type="password" id="password" autocomplete="current-password" required>
+        </label>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+        <p id="loginError" class="error" hidden></p>
+    </form>
+    <details class="demo-accounts">
+        <summary>Demo accounts</summary>
+        <ul>
+            <li><code>admin</code> / <code>admin123</code> - full access</li>
+            <li><code>hr</code> / <code>hr123</code> - HR operations</li>
+            <li><code>manager</code> / <code>manager123</code> - team view</li>
+            <li><code>bob</code> / <code>bob123</code> - employee</li>
+            <li><code>dave</code> / <code>dave123</code> - employee</li>
+        </ul>
+    </details>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
